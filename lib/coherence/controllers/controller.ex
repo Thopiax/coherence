@@ -276,9 +276,9 @@ defmodule Coherence.Controller do
   def respond_with(conn, atom, opts \\ %{}) do
     responder = case conn.private.phoenix_format do
       "json" ->
-        Coherence.Responders.Json
+        Responders.Json
       _ ->
-        Coherence.Responders.Html
+        Responders.Html
     end
     apply(responder, atom, [conn, opts])
   end
