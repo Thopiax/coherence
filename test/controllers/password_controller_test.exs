@@ -84,7 +84,7 @@ defmodule CoherenceTest.PasswordController do
 
     test "valid token hasn't expired", %{conn: conn} do
       token = random_string 48
-      insert_user(%{reset_password_sent_at: NaiveDateTime.utc_now(), reset_password_token: token})
+      insert_user(%{reset_password_sent_at: DateTime.utc_now(), reset_password_token: token})
       params = %{"id" => token}
       conn = get conn, password_path(conn, :edit, token), params
       assert conn.private[:phoenix_template] == "edit.html"
@@ -95,7 +95,7 @@ defmodule CoherenceTest.PasswordController do
   describe "update" do
     test "valid token", %{conn: conn} do
       token = random_string 48
-      user = insert_user(%{reset_password_sent_at: NaiveDateTime.utc_now(), reset_password_token: token})
+      user = insert_user(%{reset_password_sent_at: DateTime.utc_now(), reset_password_token: token})
       old_password_hash = user.password_hash
       params = %{"password" => %{reset_password_token: token, password: "123123", password_confirmation: "123123"}}
       put(conn, password_path(conn, :update, user.id), params)
@@ -107,7 +107,7 @@ defmodule CoherenceTest.PasswordController do
 
     test "invalid reset password token", %{conn: conn} do
       token = random_string 48
-      user = insert_user(%{reset_password_sent_at: NaiveDateTime.utc_now(), reset_password_token: token})
+      user = insert_user(%{reset_password_sent_at: DateTime.utc_now(), reset_password_token: token})
       old_password_hash = user.password_hash
       old_sent_at = user.reset_password_sent_at
       params = %{"password" => %{reset_password_token: "1234567890", password: "123123", password_confirmation: "123123"}}
