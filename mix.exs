@@ -34,14 +34,14 @@ defmodule Coherence.Mixfile do
 
   defp deps do
     [
-      {:ecto, "~> 3.0"},
+      {:ecto, "~> 2.0"},
       {:comeonin, "~> 3.0"},
       {:phoenix, "~> 1.3"},
       {:phoenix_html, "~> 2.10"},
       {:gettext, "~> 0.14"},
       {:uuid, "~> 1.0"},
       {:phoenix_swoosh, "~> 0.2"},
-      {:timex, "~> 3.4"},
+      {:timex, "~> 3.1"},
       {:floki, "~> 0.19", only: :test},
       {:ex_doc, "~> 0.18", only: :dev},
       {:earmark, "~> 1.2", only: :dev, override: true},
